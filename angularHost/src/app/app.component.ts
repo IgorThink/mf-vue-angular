@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild, inject } from '@angular/core';
 // @ts-ignore  
 const containerVueElementName = "customVueComponentContainer";
 
@@ -18,6 +18,8 @@ export class AppComponent {
 
   name = "name from Angular";
 
+  isLoaded = false;
+
   selected: number = 0;
 
   constructor(private renderer: Renderer2) {}
@@ -26,22 +28,35 @@ export class AppComponent {
     try {
       // @ts-ignore  
       import("settings_user/Settings").then((val) => {
-        console.log(val)
         const classVue = val.default
-        console.log(classVue, new classVue())
+        // console.log((new classVue()))
+        // console.log(val, new classVue())
         this.renderer.appendChild(
           this.containerVueRef.nativeElement,
           new classVue()
         );
       });
-      import("settings_user/HelloWorld").then((val) => {
-        console.log(val)
+      // import("settings_user/HelloWorld").then((val) => {
+      //   const classVue = val.default
+      //   console.log((new classVue()))
+      //   console.log(val, new classVue())
+      //   this.renderer.appendChild(
+      //     this.containerVueRef.nativeElement,
+      //     new classVue()
+      //   );
+      // });
+      import("settings_user/CurrentTimeComponent").then((val) => {
         const classVue = val.default
-        console.log(new classVue(), this.containerVueRefSecond.nativeElement)
+        console.log((classVue))
         this.renderer.appendChild(
           this.containerVueRefSecond.nativeElement,
-          new classVue()
+          new classVue({
+            timeZone: 'America/Los_Angeles',
+            sameValue: 'angularValue'
+          })
         );
+        const vueTimerComponent = document.querySelector('current-time')
+        // vueTimerComponent?.addEventListener('datechange', (event: any) => console.log('angular catch value', event.detail[0]._value))
       })
     } catch {}
   }

@@ -1,7 +1,7 @@
   <script>
 import { defineCustomElement } from 'vue';
 
-const HelloWorld = defineCustomElement({
+let HelloWorld = defineCustomElement({
   styles: [],
     template:`
       <div class="hello">
@@ -16,7 +16,10 @@ const HelloWorld = defineCustomElement({
     },
   });
   // console.log(new HelloWorld())
-customElements.define("vue-app", HelloWorld);
+  if (!customElements.get('vue-app')) {
+    HelloWorld = customElements.define("vue-app", HelloWorld);
+  }
 
+  // export default Settings;
 export default HelloWorld;
 </script>

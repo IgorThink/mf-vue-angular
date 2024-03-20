@@ -66,11 +66,12 @@ module.exports = (env = {}) => ({
       filename: 'remoteEntry.js',
       exposes: {
         './HelloWorld': './src/components/HelloWorld',
-        './Settings': './src/components/Settings'
+        './Settings': './src/components/Settings',
+        './CurrentTimeComponent': './src/main.js'
       },
       shared: {
         vue: {
-          eager: true,
+          eager: true,singleton: true,
           requiredVersion: deps.vue,
         },
       },
