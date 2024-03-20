@@ -47,8 +47,4 @@ export function initializeApp(): () => void {
   bootstrap: [AppComponent],
 })
 export class AppModule {
-
-  ngOnInit() {
-    console.log('app', AppComponent)
-  }
 }

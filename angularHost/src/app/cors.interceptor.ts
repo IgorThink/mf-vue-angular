@@ -17,8 +17,6 @@ export class AuthInterceptor implements HttpInterceptor {
             ),
         });
 
-        console.log(req)
-
         return next.handle(authReq).pipe(
             tap(
                 (event) => {
