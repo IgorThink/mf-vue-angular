@@ -1,4 +1,5 @@
 declare module "remote_app/HelloWorld";
+declare module "remote_app/VueModule";
 // declare module "home/Footer";
 type Scope = unknown;
 type Factory = () => any;

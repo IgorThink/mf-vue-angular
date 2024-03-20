@@ -3,26 +3,26 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
-import { loadRemoteModule } from '@angular-architects/module-federation';
+import { loadRemoteModule } from "./utils/federation.util";
+import { AuthInterceptor } from './cors.interceptor';
 
-// import HelloWorld from "mfe1"
 
-// export function initializeApp(): () => void {
-//   return () => {
-//     loadRemoteModule({
-//       remoteEntry: 'http://localhost:5001/assets/remoteEntry.js',
-//       remoteName: 'remote_app',
-//       exposedModule: './Vue',
-//     });
-//     // loadRemoteModule({
-//     //   remoteEntry: "http://localhost:3002/remoteEntry.js",
-//     //   remoteName: "settings_user",
-//     //   exposedModule: "./Settings",
-//     // });
-//   };
-// }
+export function initializeApp(): () => void {
+  return () => {
+    // loadRemoteModule({
+    //   remoteEntry: "http://localhost:5001/assets/remoteEntry.js",
+    //   remoteName: "profile_user",
+    //   exposedModule: "./ProfileReactComponent",
+    // });
+    loadRemoteModule({
+      remoteEntry: "http://localhost:3002/remoteEntry.js",
+      remoteName: "settings_user",
+      exposedModule: "./HelloWorld",
+    });
+  };
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,11 +34,15 @@ import { loadRemoteModule } from '@angular-architects/module-federation';
     AppRoutingModule,
   ],
   providers: [
-    // {
-    //   provide: APP_INITIALIZER,
-    //   useFactory: initializeApp,
-    //   multi: true,
-    // },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      multi: true,
+    }, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+  },
   ],
   bootstrap: [AppComponent],
 })

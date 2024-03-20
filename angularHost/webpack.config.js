@@ -10,12 +10,20 @@ sharedMappings.register(
 
 module.exports = {
   output: {
+    publicPath: "http://localhost:4270/",
     uniqueName: "angularHost",
-    publicPath: "auto"
+    scriptType: "text/javascript",
   },
   optimization: {
     runtimeChunk: false
   },   
+  devServer: {
+    port: 4270,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+    hot: true,
+  },
   resolve: {
     alias: {
       ...sharedMappings.getAliases(),
@@ -25,12 +33,13 @@ module.exports = {
     outputModule: true
   },
   plugins: [
-    
     new ModuleFederationPlugin({
-        library: { type: "module" },
+      name: "angular-host",
+      filename: "remoteEntry.js",
+        // library: { type: "module" },
         // For hosts (please adjust)
         remotes: {
-          "remote_app": "http://localhost:5001/assets/remoteEntry.js",
+          "settings_user": "settings_user@http://localhost:3002/remoteEntry.js",
         },
 
         shared: share({
