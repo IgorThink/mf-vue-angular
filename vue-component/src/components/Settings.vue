@@ -60,7 +60,6 @@ const Settings = defineCustomElement({
     },
   });
 
-  // console.log('settings',new Settings())
 
 customElements.define("my-vue-web-comp", Settings);
 
