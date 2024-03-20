@@ -60,7 +60,6 @@ const Settings = defineCustomElement({
     },
   });
 
-
 customElements.define("my-vue-web-comp", Settings);
 
 export default Settings;

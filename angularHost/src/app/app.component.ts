@@ -36,15 +36,15 @@ export class AppComponent {
           new classVue()
         );
       });
-      // import("settings_user/HelloWorld").then((val) => {
-      //   const classVue = val.default
-      //   console.log((new classVue()))
-      //   console.log(val, new classVue())
-      //   this.renderer.appendChild(
-      //     this.containerVueRef.nativeElement,
-      //     new classVue()
-      //   );
-      // });
+      import("settings_user/HelloWorld").then((val) => {
+        const classVue = val.default
+        // console.log((new classVue()))
+        // console.log(val, new classVue())
+        this.renderer.appendChild(
+          this.containerVueRef.nativeElement,
+          new classVue()
+        );
+      });
       import("settings_user/CurrentTimeComponent").then((val) => {
         const classVue = val.default
         console.log((classVue))

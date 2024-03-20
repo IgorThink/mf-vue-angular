@@ -16,11 +16,11 @@ export function initializeApp(): () => void {
     //   remoteName: "profile_user",
     //   exposedModule: "./ProfileReactComponent",
     // });
-    loadRemoteModule({
-      remoteEntry: "http://localhost:3002/remoteEntry.js",
-      remoteName: "settings_user",
-      exposedModule: "./HelloWorld",
-    });
+    // loadRemoteModule({
+    //   remoteEntry: "http://localhost:3002/remoteEntry.js",
+    //   remoteName: "settings_user",
+    //   exposedModule: "./HelloWorld",
+    // });
   };
 }
 
