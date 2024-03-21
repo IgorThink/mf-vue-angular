@@ -1,7 +1,7 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app.routes';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
@@ -16,11 +16,11 @@ export function initializeApp(): () => void {
     //   remoteName: "profile_user",
     //   exposedModule: "./ProfileReactComponent",
     // });
-    // loadRemoteModule({
-    //   remoteEntry: "http://localhost:3002/remoteEntry.js",
-    //   remoteName: "settings_user",
-    //   exposedModule: "./HelloWorld",
-    // });
+  //   loadRemoteModule({
+  //     remoteEntry: "http://localhost:3002/remoteEntry.js",
+  //     remoteName: "settings_user",
+  //     exposedModule: "./HelloWorld",
+  //   });
   };
 }
 
@@ -31,7 +31,6 @@ export function initializeApp(): () => void {
     AppRoutingModule,
     HttpClientModule,
     RouterOutlet,
-    AppRoutingModule,
   ],
   providers: [
     {

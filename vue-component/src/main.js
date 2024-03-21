@@ -1,5 +1,6 @@
 import('./bootstrap');
 import CurrentTime from './components/CurrentTime.vue';
+import HelloWorld from './components/HelloWorld.vue';
 
 
 import { defineCustomElement } from 'vue';

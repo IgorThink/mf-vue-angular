@@ -16,6 +16,8 @@ const props = defineProps({
   }
 });
 
+console.log(localStorage.name)
+
 const emit = defineEmits(['datechange']);
 
 const currentDateTime = ref(new Date());

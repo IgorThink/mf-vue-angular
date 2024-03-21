@@ -1,24 +1,26 @@
 import { Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { RouterModule,  } from '@angular/router';
-
+import { RouterModule } from '@angular/router';
+import { of } from 'rxjs';
 
 const routes: Routes = [
   {
-    path: '',
-// @ts-ignore      
-    loadChildren: () => import('remote_app/HelloWorld').then(m => m.HelloWorld)
-  } ,
-  // {
-  //   path: 'vue',
-  //   component: WebComponentWrapper,
-  //       data: {
-  //         type: 'module',
-  //         remoteEntry: 'https://localhost:5001/assets/remoteEntry.js',
-  //         exposedModule: './web-components',
-  //         elementName: 'angular1-element'
-  //       } as WebComponentWrapperOptions
-  // } 
+    path: 'vue-page',
+    loadComponent: () => import('./vue-page/vue-page.component').then(m =>{
+      return m.VuePageComponent
+    }),
+    pathMatch: 'full',
+  },
+  {
+    path: 'vue-page-composition',
+    loadComponent: () => import('./vue-page/vue-page.component').then(m =>{
+      return m.VuePageComponent
+    }),
+    data: {
+      option: 'composition'
+    },
+    pathMatch: 'full',
+  } 
 ];  
 
 
